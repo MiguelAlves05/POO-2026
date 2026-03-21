@@ -20,7 +20,7 @@ public class Disciplina {
     }
 
     public void matricularAluno(Aluno aluno){
-        alunos.add(aluno);
+        this.alunos.add(aluno);
     }
 
     public void criarAvaliacao(int id, String nome){
