@@ -18,7 +18,7 @@ public class Junior extends Desenvolvedor{
 
     @Override
     public void codar(){
-        System.out.println("Junior criando com a mentoria de " + this.mentor);
+        System.out.println("Junior codando com a mentoria de " + this.mentor);
     }
 
     @Override
