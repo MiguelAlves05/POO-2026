@@ -1,4 +1,4 @@
-public class Veiculo {
+public abstract class Veiculo {
     protected String marca;
     protected String modelo;
     protected float velocidade;
