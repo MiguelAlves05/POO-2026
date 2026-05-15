@@ -5,6 +5,7 @@ import FatecFranca.Produto.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.service.annotation.PatchExchange;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
@@ -32,5 +33,28 @@ public class ProdutoController {
         URI uri = URI.create("/produtos/"+criado.getId());
         //retorna status de sucesso 201 (Created)
         return ResponseEntity.created(uri).body(criado);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> remover(@PathVariable Long id) {
+        return service.remover(id) ?
+                ResponseEntity.noContent().build() :
+                ResponseEntity.notFound().build();
+    }
+
+    @PatchMapping ("/{id}")
+    public ResponseEntity<Produto> atualizar(
+            @PathVariable Long id,
+            @RequestBody Produto produto
+    ){
+        Produto ret = service.atualizar(id, produto);
+        if (ret == null){
+            // não encontrou para atualizar
+            return ResponseEntity.notFound().build();
+        }
+        else {
+            // retorna produto atualizado
+            return ResponseEntity.ok(ret);
+        }
     }
 }

@@ -26,8 +26,28 @@ public class ProdutoService {
         return p; // retorna produto
     }
 
+    public boolean remover(Long id){
+        for(int i = 0; i < this.lista.size(); i++){
+            if(lista.get(i).getId().equals(id)){
+                this.lista.remove(i);
+                return true;
+            }
+        }
+        return false;
+    }
+
     public Produto buscarPorId(Long id) {
         return lista.stream().filter(p -> p.getId().equals(id))
                 .findFirst().orElse(null);
+    }
+    public Produto atualizar(Long id, Produto novo){
+        for(int i = 0; i < lista.size(); i++){
+            if(lista.get(i).getId().equals(id)){
+                novo.setId(id);
+                lista.set(i, novo);
+                return novo;
+            }
+        }
+        return null;
     }
 }
